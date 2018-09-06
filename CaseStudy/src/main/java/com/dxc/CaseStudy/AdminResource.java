@@ -76,4 +76,12 @@ public class AdminResource {
 	    			.build();
 
 	    }
+	    @GET
+	    @Path("viewallempleaves")
+	    @Produces(MediaType.APPLICATION_JSON)
+	 		public Response getAllempLeaves() {
+	    	
+	    	return Response.ok(AdminService.viewAllEmpLeaves()).build();
+	    	
+	    }
 }

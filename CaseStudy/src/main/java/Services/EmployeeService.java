@@ -10,6 +10,8 @@ import Mapper.EmployeeMapper;
 import Model.AdminDatabase;
 import Model.Database;
 import Model.EmployeeDatabase;
+import Model.EmployeeLeaveDatabase;
+
 
 public class EmployeeService {
 
@@ -47,4 +49,23 @@ public class EmployeeService {
 		String newPass=doc.getString("newpassword");
 		return EmployeeDatabase.updatePassword(empId,oldPass,newPass);
 	}
+
+	public static EmployeeDetails getEmpProfile(String empId) {
+		  EmployeeDetails emp=EmployeeDatabase.getEmpProfile(empId);
+		  return emp;
+	}
+
+	public static Document viewLeave(String month, String empId) {
+		 return EmployeeLeaveDatabase.viewLeave(month,empId);
+	}
+
+	public static Document monthWithMaxLeaves(String empId) {
+		return EmployeeLeaveDatabase.monthWithMaxLeaves(empId);
+	}
+
+	public static ArrayList monthsWithLeaves(String empId) {
+		 return EmployeeLeaveDatabase.monthsWithLeaves(empId);
+	}
+
+
 }

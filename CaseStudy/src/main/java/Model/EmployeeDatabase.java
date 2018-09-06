@@ -8,11 +8,15 @@ import org.bson.conversions.Bson;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.UpdateResult;
 
+
 import Employee.EmployeeDetails;
 import Mapper.EmployeeMapper;
+import Services.EmployeeService;
+
 
 public class EmployeeDatabase {
 
@@ -48,8 +52,9 @@ public class EmployeeDatabase {
 		}
 		return al;
 	}
-	public static ArrayList generatePaySlip(EmployeeDetails emp) //admin
+	public static ArrayList generatePaySlip(EmployeeDetails emp) 
 	{
+		
 		double totalSalary=0;
 		double salary=emp.getSalary();
 		System.out.println(salary);
@@ -80,4 +85,19 @@ public class EmployeeDatabase {
 		UpdateResult result= employeeDetails.updateOne(password, set);
 		return result.wasAcknowledged();
 	}
+
+	public static EmployeeDetails getEmpProfile(String empId) {
+		FindIterable<Document> fitr=employeeDetails.find(Filters.eq("empId",empId));
+		EmployeeDetails emp=null;
+		Iterator it = fitr.iterator();
+		while(it.hasNext())
+		{
+			Document doc=(Document)it.next();
+			emp=EmployeeMapper.toObject(doc);
+		}
+		System.out.println(emp);
+		return emp;
+	}
+
+	
 }

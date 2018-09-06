@@ -48,6 +48,11 @@ public class AdminService {
 		Document d = EmployeeLeaveMapper.toDocument(emp);
 		EmployeeLeaveDatabase.employeeLeave(d);
 	}
+
+	public static ArrayList viewAllEmpLeaves() {
+		ArrayList al = EmployeeLeaveDatabase.viewAllEmpLeaves();
+		return al;
+	}
 	
 	
 }
